@@ -1,0 +1,38 @@
+services:
+  symfony:
+    build: php
+    container_name: symfony
+    ports:
+      - "8741:80"
+    volumes:
+      - ./php/vhosts:/etc/apache2/sites-enabled
+      - ./:/var/www
+    restart: always
+    networks:
+      - default
+    environment:
+      MONGODB_URL: "mongodb://mongo:27017"
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "3030:27017"
+    volumes:
+      - ./mongodb_data:/data/db
+    networks:
+      - default
+
+  flutter:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: flutter
+    ports:
+      - "5000:5000"
+    networks:
+      - default
+
+networks:
+  default:
