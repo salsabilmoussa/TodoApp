@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'task.g.dart';
+
+@JsonSerializable()
 class Task {
   final String id;
   final String title;
@@ -11,21 +15,7 @@ class Task {
     required this.isCompleted,
   });
 
+  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 
-  factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      isCompleted: json['isCompleted'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'description': description,
-      'isCompleted': isCompleted,
-    };
-  }
+  Map<String, dynamic> toJson() => _$TaskToJson(this);
 }

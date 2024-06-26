@@ -6,6 +6,13 @@ import 'package:frontend/service/task_service.dart';
 
 void main() {
   return runApp(ModularApp(module: AppModule(), child: const MyApp()));
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) =>
+  //         ModularApp(module: AppModule(), child: const MyApp()),
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      // locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
